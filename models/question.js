@@ -26,17 +26,21 @@ module.exports = function (sequelize, DataTypes) {
     },
     approved: {
       type: DataTypes.INTEGER,
+      default: 0
     },
     disapproved: {
       type: DataTypes.INTEGER,
+      default: 0
     },
     correctGuesses: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      default: 0
     },
     incorrectGuesses: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      default: 0
     }
   });
 
