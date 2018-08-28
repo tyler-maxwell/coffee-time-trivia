@@ -1,13 +1,16 @@
-module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("user", {
+
+//console.log("QUESTION", Question);
+
+module.exports = function (sequelize, DataTypes) {
+  var User = sequelize.define("User", {
     UserName: DataTypes.STRING(250),
     password: DataTypes.STRING(50),
     correct: DataTypes.TINYINT,
     wrong: DataTypes.TINYINT
   });
 
-  User.associate = function(models) {
-    User.hasMany(models.Questions, {
+  User.associate = function (models) {
+    User.hasMany(models.Question, {
       foreignKey: {
         allowNull: false
       },
@@ -15,9 +18,10 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-  User.associate = function(models) {
-    Question.belongsToMany(User, { through: "Answered" });
+  User.associate = function (models) {
+    models.Question.belongsToMany(User, { through: "Answered" });
     User.belongsToMany(models.Question, { through: "Answered" });
-    return User;
   };
+
+  return User;
 };
