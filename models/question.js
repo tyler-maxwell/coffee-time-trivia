@@ -29,6 +29,11 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       default: true
     },
+    disapproved: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      default: true
+    },
     correctGuesses: {
       type: DataTypes.INTEGER,
       allowNull: false
