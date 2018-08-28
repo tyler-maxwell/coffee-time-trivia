@@ -2,15 +2,17 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "exampledb",
+    "database": "trivia",
     "host": "localhost",
+    "port": "8889",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "testdb",
+    "password": "root",
+    "database": "trivia",
     "host": "localhost",
+    "port": "8889",
     "dialect": "mysql",
     "logging": false
   },
