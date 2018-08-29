@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var Question = sequelize.define("Question", {
     question: {
       type: DataTypes.STRING(250),
@@ -26,25 +26,25 @@ module.exports = function (sequelize, DataTypes) {
     },
     approved: {
       type: DataTypes.INTEGER,
-      default: 0
+      defaultValue: 0
     },
     disapproved: {
       type: DataTypes.INTEGER,
-      default: 0
+      defaultValue: 0
     },
     correctGuesses: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      default: 0
+      defaultValue: 0
     },
     incorrectGuesses: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      default: 0
+      defaultValue: 0
     }
   });
 
-  Question.associate = function (models) {
+  Question.associate = function(models) {
     Question.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
