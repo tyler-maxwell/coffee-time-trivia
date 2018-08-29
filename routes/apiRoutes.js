@@ -45,6 +45,55 @@ module.exports = function(app) {
     });
   });
 
+  app.get("api/game/:id", function(req, res, user) {
+    var approved = [];
+    var disapproved = [];
+    var question = [];
+    var answer1 = [];
+    var answer2 = [];
+    var answer3 = [];
+    var answer4 = [];
+    var correctAnswer = [];
+    var QuestionId;
+    //need to query for user and determine which question they're on
+    db.Answered.findOne({
+      attributes: ["QuestionId"],
+      where: {
+        username: user
+      }
+    }).then(function(data) {
+      QuestionId = data.QuestionId;
+    })
+    db.Questions.findAll({
+      where: {
+        id: {
+          $gt: QuestionId
+      }
+    }}).then(function(data) {
+      approved = data.approved;
+      disapproved = data.disapproved;
+      question = data.question;
+      answer1 = data.answer1;
+      answer2 = data.answer2;
+      answer3 = data.answer3;
+      answer4 = data.answer4;
+      correctAnswer = data.correctAnswer;
+    });
+    for (i=0; i < approved.length; i++) {
+      var rating = approved[i]/(approved[i] + disapproved[i]);
+      if (rating >= .5) {
+        res.render("Game", {
+          question: question[i],
+          answer1: answer1[i],
+          answer2: answer2[i],
+          answer3: answer3[i],
+          answer4: answer4[i],
+          correctAnswer: correctAnswer[i]
+        })
+      }
+    };
+  });
+
   // Get all examples
   app.get("/api/examples", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
