@@ -3,7 +3,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
-    UserName: DataTypes.STRING(250),
+    username: DataTypes.STRING(250),
     password: DataTypes.STRING(50),
     correct: DataTypes.TINYINT,
     wrong: DataTypes.TINYINT
