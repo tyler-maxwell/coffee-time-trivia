@@ -45,7 +45,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("api/game/:id", function(req, res, user) {
+  app.get("api/game/:user/:id", function(req, res) {
     var approved = [];
     var disapproved = [];
     var question = [];
@@ -59,17 +59,18 @@ module.exports = function(app) {
     db.Answered.findOne({
       attributes: ["QuestionId"],
       where: {
-        username: user
+        username: req.params.user
       }
     }).then(function(data) {
       QuestionId = data.QuestionId;
-    })
+    });
     db.Questions.findAll({
       where: {
         id: {
           $gt: QuestionId
+        }
       }
-    }}).then(function(data) {
+    }).then(function(data) {
       approved = data.approved;
       disapproved = data.disapproved;
       question = data.question;
@@ -79,9 +80,9 @@ module.exports = function(app) {
       answer4 = data.answer4;
       correctAnswer = data.correctAnswer;
     });
-    for (i=0; i < approved.length; i++) {
-      var rating = approved[i]/(approved[i] + disapproved[i]);
-      if (rating >= .5) {
+    for (i = 0; i < approved.length; i++) {
+      var rating = approved[i] / (approved[i] + disapproved[i]);
+      if (rating >= 0.5) {
         res.render("Game", {
           question: question[i],
           answer1: answer1[i],
@@ -89,9 +90,9 @@ module.exports = function(app) {
           answer3: answer3[i],
           answer4: answer4[i],
           correctAnswer: correctAnswer[i]
-        })
+        });
       }
-    };
+    }
   });
 
   // Get all examples
