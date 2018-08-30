@@ -1,0 +1,79 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Welcome to Trivia!</h1>
+        <hr class="my-4"> {{#if isUser}}
+        <p>Howdy, {{user.username}}!</p>
+        <a class="btn btn-primary btn-lg" href="/game" role="button">Play Trivia</a>
+        <a class="btn btn-primary btn-lg" href="/dashboard" role="button">Dashboard</a>
+        <a class="btn btn-primary btn-lg" href="/logout" role="button">Logout</a>
+        {{/if}} {{#unless isUser}}
+        <p>You are not currently signed in.</p>
+        <button type="button" class="btn btn-primary btn-lg" id="modalBtn">Sign Up / Sign In</button>
+        {{/unless}}
+    </div>
+</div>
+
+<div class="container">
+    <h1 class="display-4">About this App</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacus enim, placerat eu dui in, vestibulum mollis ante. Pellentesque
+        habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam mi ante, efficitur convallis
+        magna vitae, faucibus imperdiet nisi. Nam tempor orci vel ante blandit pretium. Donec at diam nisi. Maecenas laoreet
+        nunc sit amet leo rhoncus, ac gravida elit volutpat. Aliquam erat volutpat. Proin fringilla libero vel porttitor
+        placerat. Vivamus nec mauris in arcu convallis pretium. Suspendisse semper volutpat enim id lobortis. Curabitur dapibus
+        dapibus velit, tristique pretium odio lacinia et. Praesent id tortor et ex luctus dictum.</p>
+    <p>
+        In maximus dui vitae nulla volutpat iaculis. In eget blandit nunc. Pellentesque sollicitudin ullamcorper nunc rutrum commodo.
+        In varius aliquet leo, a dignissim massa tempor eget. In in eros facilisis, luctus neque pulvinar, facilisis nisi.
+        Ut non lacinia nulla. Nunc porttitor quam vel cursus pretium. Aliquam erat volutpat. Nam et odio diam. Fusce ut quam
+        laoreet, scelerisque massa quis, fermentum erat. Morbi cursus sed turpis eu molestie. Aenean vel turpis pharetra,
+        dapibus lorem sit amet, placerat augue.
+    </p>
+</div>
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="results-modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form>
+                            <h4>Sign Up</h4>
+                            <div class="form-group">
+                                <label for="usernameCreate">Username</label>
+                                <input type="text" class="form-control" id="usernameCreate" placeholder="Enter username">
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordCreate">Password</label>
+                                <input type="text" class="form-control" id="passwordCreate" placeholder="Enter password">
+                                <input type="text" class="form-control" id="passwordCheck" placeholder="Reenter password">
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="createSubmit">Submit</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form>
+                            <h4>Sign In</h4>
+                            <div class="form-group">
+                                <label for="usernameInput">Username</label>
+                                <input type="text" class="form-control" id="usernameInput" placeholder="Enter username">
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordInput">Password</label>
+                                <input type="text" class="form-control" id="passwordInput" placeholder="Enter password">
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="loginSubmit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/account.js"></script>
