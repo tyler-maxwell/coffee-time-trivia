@@ -45,7 +45,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("api/game/:user/:id", function(req, res) {
+  app.get("api/game/:user/:Qid", function(req, res) {
     var approved = [];
     var disapproved = [];
     var question = [];

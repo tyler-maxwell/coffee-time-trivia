@@ -1,11 +1,12 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
+//Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
+  //Display the signup/signin modal
   $("#modalBtn").on("click", function(event) {
     event.preventDefault();
     $("#login-modal").modal("show");
   });
 
-  // Create account
+  //Sign up user
   $("#createSubmit").on("click", function(event) {
     event.preventDefault();
 
@@ -25,15 +26,17 @@ $(function() {
         password: password
       };
 
-      $.post("/api/users", user, function(result) {
+      $.post("/api/signup", user, function(result) {
+        //Currently returns the html as a string. Hotfix is to redirect user to intended url upon completion of post request via client js.
         console.log(result);
+        window.location.assign("/dashboard");
       });
     } else {
       console.log("password does not match");
     }
   });
 
-  // Sign in
+  //Sign in user
   $("#loginSubmit").on("click", function(event) {
     event.preventDefault();
 
@@ -44,8 +47,15 @@ $(function() {
       .val()
       .trim();
 
-    $.get("/api/users/" + username + "/" + password, function(result) {
+    var user = {
+      username: username,
+      password: password
+    };
+
+    $.post("/api/signin", user, function(result) {
+      //Currently returns the html as a string. Hotfix is to redirect user to intended url upon completion of post request via client js.
       console.log(result);
+      window.location.assign("/dashboard");
     });
   });
 });
