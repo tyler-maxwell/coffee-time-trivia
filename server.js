@@ -39,11 +39,11 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-// require("./routes/apiRoutes")(app, passport);
+require("./routes/apiRoutes")(app, passport);
 require("./routes/htmlRoutes")(app);
 
 // Load passport strategies
-// require("./config/passport.js")(passport, db.User);
+require("./config/passport.js")(passport, db.User);
 
 var syncOptions = { force: false };
 
