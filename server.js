@@ -19,15 +19,17 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // For Passport
-// app.use(
-//   session({
-//     secret: keys.session.secret,
-//     resave: true,
-//     saveUninitialized: true
-//   })
-// );
-// app.use(passport.initialize());
-// app.use(passport.session()); // persistent login sessions
+app.set('trust proxy', 1)
+app.use(
+  session({
+    secret: keys.session.secret,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: true }
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 
 // Handlebars
 app.engine(
