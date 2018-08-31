@@ -20,10 +20,10 @@
     <div class="jumbotron">
         <h1 class="display-4">{{question}}</h1>
         <hr class="my-4">
-        <a class="btn btn-primary btn-lg" href="#" role="button">{{answer1}}</a>
-        <a class="btn btn-primary btn-lg" href="#" role="button">{{answer2}}</a>
-        <a class="btn btn-primary btn-lg" href="#" role="button">{{answer3}}</a>
-        <a class="btn btn-primary btn-lg" href="#" role="button">{{answer4}}</a>
+        <a class="btn btn-primary btn-lg" id="ans" href="#" role="button">{{answer1}}</a>
+        <a class="btn btn-primary btn-lg" id="ans" href="#" role="button">{{answer2}}</a>
+        <a class="btn btn-primary btn-lg" id="ans" href="#" role="button">{{answer3}}</a>
+        <a class="btn btn-primary btn-lg" id="ans" href="#" role="button">{{answer4}}</a>
     </div>
     <!--need to show user whether or not they got the correct answer-->
     <!--need to fix references for buttons, probably create more api routes?-->
@@ -35,5 +35,11 @@
         <a class="btn btn-primary btn-lg" href="#" role="button">Disapprove</a>
     </div>
 </body>
+
+<script>
+    $("#ans").on("click", function (event) {
+        event.preventDefault();
+    })
+</script>
 
 </html>

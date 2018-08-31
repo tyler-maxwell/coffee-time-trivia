@@ -45,7 +45,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("api/game/:user/:Qid", function(req, res) {
+  app.get("api/game/:user", function(req, res) {
     var approved = [];
     var disapproved = [];
     var question = [];
@@ -56,6 +56,7 @@ module.exports = function(app) {
     var correctAnswer = [];
     var QuestionId;
     //need to query for user and determine which question they're on
+    //users questions exclude
     db.Answered.findOne({
       attributes: ["QuestionId"],
       where: {
@@ -80,8 +81,7 @@ module.exports = function(app) {
       answer4 = data.answer4;
       correctAnswer = data.correctAnswer;
     });
-    for (i = 0; i < approved.length; i++) {
-      var rating = approved[i] / (approved[i] + disapproved[i]);
+      var rating = approved / (approved + disapproved);
       if (rating >= 0.5) {
         res.render("Game", {
           question: question[i],
@@ -91,23 +91,21 @@ module.exports = function(app) {
           answer4: answer4[i],
           correctAnswer: correctAnswer[i]
         });
-      }
-    }
-  });
+      };
 
   // Get all examples
   app.get("/api/examples", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
       res.json(dbExamples);
     });
-  });
+  }),
 
   // Create a new example
   app.post("/api/examples", function(req, res) {
     db.Example.create(req.body).then(function(dbExample) {
       res.json(dbExample);
     });
-  });
+  }),
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
@@ -116,5 +114,5 @@ module.exports = function(app) {
     ) {
       res.json(dbExample);
     });
-  });
-};
+  })
+})}
