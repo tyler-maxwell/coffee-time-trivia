@@ -19,13 +19,12 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // For Passport
-app.set('trust proxy', 1)
+
 app.use(
   session({
     secret: keys.session.secret,
     resave: true,
     saveUninitialized: true,
-    cookie: { secure: true }
   })
 );
 app.use(passport.initialize());
