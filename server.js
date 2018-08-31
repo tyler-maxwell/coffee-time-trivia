@@ -19,15 +19,15 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // For Passport
-app.use(
-  session({
-    secret: "supersecretspecialkey",
-    resave: true,
-    saveUninitialized: true
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+// app.use(
+//   session({
+//     secret: keys.session.secret,
+//     resave: true,
+//     saveUninitialized: true
+//   })
+// );
+// app.use(passport.initialize());
+// app.use(passport.session()); // persistent login sessions
 
 // Handlebars
 app.engine(
@@ -39,11 +39,11 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-require("./routes/apiRoutes")(app, passport);
+// require("./routes/apiRoutes")(app, passport);
 require("./routes/htmlRoutes")(app);
 
 // Load passport strategies
-require("./config/passport.js")(passport, db.User);
+// require("./config/passport.js")(passport, db.User);
 
 var syncOptions = { force: false };
 
