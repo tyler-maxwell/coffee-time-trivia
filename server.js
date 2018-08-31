@@ -21,7 +21,7 @@ app.use(express.static("public"));
 // For Passport
 app.use(
   session({
-    secret: keys.session.secret,
+    secret: "supersecretspecialkey",
     resave: true,
     saveUninitialized: true
   })
