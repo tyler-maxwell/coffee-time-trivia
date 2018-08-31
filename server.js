@@ -19,12 +19,11 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // For Passport
-
 app.use(
   session({
     secret: keys.session.secret,
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: true
   })
 );
 app.use(passport.initialize());
