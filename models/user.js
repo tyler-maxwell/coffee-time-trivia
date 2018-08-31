@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     username: DataTypes.STRING(255),
     password: DataTypes.STRING(255),
@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  User.associate = function(models) {
+  User.associate = function (models) {
     User.hasMany(models.Question, {
       foreignKey: {
         allowNull: false
@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-  User.associate = function(models) {
+  User.associate = function (models) {
     models.Question.belongsToMany(User, { through: "Answered" });
     User.belongsToMany(models.Question, { through: "Answered" });
   };
