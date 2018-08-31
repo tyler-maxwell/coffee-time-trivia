@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
-    username: DataTypes.STRING(250),
-    password: DataTypes.STRING(50),
+    username: DataTypes.STRING(255),
+    password: DataTypes.STRING(255),
     correct: {
       type: DataTypes.SMALLINT,
       defaultValue: 0
