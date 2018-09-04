@@ -1,6 +1,6 @@
 var db = require("../models");
 
-module.exports = function(app, passport) {
+module.exports = function(app,passport) {
   //Sign up new user
   app.post(
     "/api/signup",
@@ -18,4 +18,4 @@ module.exports = function(app, passport) {
       failureRedirect: "/404"
     })
   );
-};
+}
