@@ -33,11 +33,6 @@ app.engine(
   "handlebars",
   exphbs({
     defaultLayout: "main",
-    helpers: {
-      toJSON : function(object) {
-        return JSON.stringify(object).replace(/\"/g, "");
-      }
-  }
   }));
 
 app.set("view engine", "handlebars");
