@@ -2,11 +2,11 @@ var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
 var db = require("../models");
 
+
 module.exports = function(app, passport) {
   //====================
   //Authentication Routes
   //====================
-
   //Sign up new user
   app.post(
     "/api/signup",
@@ -24,6 +24,7 @@ module.exports = function(app, passport) {
       failureRedirect: "/404"
     })
   );
+
 
   //====================
   //User Routes
@@ -141,3 +142,4 @@ module.exports = function(app, passport) {
     });
   });
 };
+

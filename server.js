@@ -5,7 +5,6 @@ var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 var passport = require("passport");
 var session = require("express-session");
-
 // Required files
 var keys = require("./keys.js");
 var db = require("./models");
@@ -36,6 +35,7 @@ app.engine(
     defaultLayout: "main"
   })
 );
+
 app.set("view engine", "handlebars");
 
 // Routes
