@@ -1,8 +1,6 @@
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 var db = require("../models");
-// var _under = require("underscore");
-var request = require('request');
 module.exports = function (app) {
   //Load sign in page
   app.get("/", function (req, res) {
