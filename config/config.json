@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "trivia",
+    "database": "user",
     "host": "localhost",
     "port": "8889",
     "dialect": "mysql"
@@ -10,7 +10,7 @@
   "test": {
     "username": "root",
     "password": "root",
-    "database": "trivia",
+    "database": "user",
     "host": "localhost",
     "port": "8889",
     "dialect": "mysql",
