@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 var passport = require("passport");
 var session = require("express-session");
+
 // Required files
 var keys = require("./keys.js");
 var db = require("./models");
@@ -35,7 +36,6 @@ app.engine(
     defaultLayout: "main"
   })
 );
-
 app.set("view engine", "handlebars");
 
 // Routes
@@ -54,8 +54,8 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function () {
-  app.listen(PORT, function () {
+db.sequelize.sync(syncOptions).then(function() {
+  app.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
