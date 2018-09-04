@@ -5,7 +5,6 @@ var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 var passport = require("passport");
 var session = require("express-session");
-// var handlebars = require("handlebars");
 // Required files
 var keys = require("./keys.js");
 var db = require("./models");
@@ -18,14 +17,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-// app.engine('handlebars', handlebars({
-//   defaultLayout: 'main', 
-//   helpers: {
-//     toJSON : function(object) {
-//       return JSON.stringify(object);
-//     }
-//   }
-// }));
 // For Passport
 app.use(
   session({
