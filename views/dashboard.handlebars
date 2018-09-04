@@ -11,13 +11,60 @@
 </div>
 
 <div class="container">
-  <h1 class="display-4">Dashboard Info</h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacus enim, placerat eu dui in, vestibulum mollis ante. Pellentesque
-    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam mi ante, efficitur convallis
-    magna vitae, faucibus imperdiet nisi. Nam tempor orci vel ante blandit pretium. Donec at diam nisi. Maecenas laoreet
-    nunc sit amet leo rhoncus, ac gravida elit volutpat. Aliquam erat volutpat. Proin fringilla libero vel porttitor placerat.
-    Vivamus nec mauris in arcu convallis pretium. Suspendisse semper volutpat enim id lobortis. Curabitur dapibus dapibus
-    velit, tristique pretium odio lacinia et. Praesent id tortor et ex luctus dictum.
-  </p>
+  <h3>Form for submitting question</h3>
+  <form action="/submitquestion" method="POST">
+    <div class="form-group">
+      <label for="usernameCreate"> Question</label>
+      <input type="text" class="form-control" id="q1" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+      <label for="usernameCreate">Answer1:</label>
+      <input type="text" class="form-control" id="a1" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+      <label for="usernameCreate">Answer2:</label>
+      <input type="text" class="form-control" id="a2" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+      <label for="usernameCreate">Answer3:</label>
+      <input type="text" class="form-control" id="a3" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+      <label for="usernameCreate">Answer4:</label>
+      <input type="text" class="form-control" id="a4" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+      <label for="usernameCreate">Correct Answer no</label>
+      <input type="number" class="form-control" id="c1" placeholder="Enter Correct Answer no from the option">
+    </div>
+    <br>
+
+    <button id="btn" type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">submit</button>
+  </form>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="text" id="textBody1" value="" />
+
+      </div>
+      <div class="modal-footer">
+        {{!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}} {{!-- <a class="btn btn-primary btn-secondary"
+          href="/dashboard" data-dismiss="modal" role="button">Close</a> --}}
+        <a class=" btn btn-primary btn-lg" href="/dashboard" role="button">Close</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/submission.js"></script>
