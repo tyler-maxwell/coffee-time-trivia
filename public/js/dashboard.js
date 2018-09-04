@@ -1,84 +1,4 @@
 // var userguess;
-$("#btn").on("click",function(){
-
-    var answerchosen1;
-    var answerchosen2;
-    var answerchosen3;
-    var answerchosen4;
-    var answerchosen5;
-    var rightanswer1;
-    var rightanswer2;
-    var rightanswer3;
-    var rightanswer4;
-    var rightanswer5;
-    var rightanswerscore=0;
-    var wronganswerscore=0;
-    answerchosen1=$("#selectanswerid1").val().trim();
-    answerchosen2=$("#selectanswerid2").val().trim();
-    answerchosen3=$("#selectanswerid3").val().trim();
-    answerchosen4=$("#selectanswerid4").val().trim();
-    answerchosen5=$("#selectanswerid5").val().trim();
-    console.log(answerchosen1);
-    console.log(answerchosen2);
-    console.log(answerchosen3);
-    console.log(answerchosen4);
-    console.log(answerchosen5);
-    rightanswer1=$("#rightanswer1").val().trim();
-    rightanswer2=$("#rightanswer2").val().trim();
-    rightanswer3=$("#rightanswer3").val().trim();
-    rightanswer4=$("#rightanswer4").val().trim();
-    rightanswer5=$("#rightanswer5").val().trim();
-    console.log(rightanswer1);
-    console.log(rightanswer2);
-    console.log(rightanswer3);
-    console.log(rightanswer4);
-    console.log(rightanswer5);
-    if(answerchosen1===rightanswer1)
-    {
-        rightanswerscore=rightanswerscore + 1;
-    }
-    else
-    {
-        wronganswerscore=wronganswerscore + 1;
-    }
-    if(answerchosen2===rightanswer2)
-    {
-        rightanswerscore=rightanswerscore + 1;
-    }
-    else
-    {
-        wronganswerscore=wronganswerscore + 1;
-    }
-    if(answerchosen3===rightanswer3)
-    {
-        rightanswerscore=rightanswerscore + 1;
-    }
-    else
-    {
-        wronganswerscore=wronganswerscore + 1;
-    }
-    if(answerchosen4===rightanswer4)
-    {
-        rightanswerscore=rightanswerscore + 1;
-    }
-    else
-    {
-        wronganswerscore=wronganswerscore + 1;
-    }
-    if(answerchosen5===rightanswer5)
-    {
-        rightanswerscore=rightanswerscore + 1;
-    }
-    else
-    {
-        wronganswerscore=wronganswerscore + 1;
-    }
-    console.log("Right Answer:"+rightanswerscore);
-    console.log("Wrong Answer:"+wronganswerscore);  
-    
-
-})
-
 // $("btn").on("click",function(){
 //   if(userguess=== correct_answer){
 //       correct_answer++;
@@ -89,3 +9,24 @@ $("#btn").on("click",function(){
 //       correct_answer=0;
 //   }
 // })
+alert("hiii")
+// $(function(){
+// var ctx = document.getElementById('myChart').getContext('2d');
+// var chart = new Chart(ctx, {
+//     // The type of chart we want to create
+//     type: 'line',
+
+//     // The data for our dataset
+//     data: {
+//         labels: ["January", "February", "March", "April", "May", "June", "July"],
+//         datasets: [{
+//             label: "My First dataset",
+//             backgroundColor: 'rgb(255, 99, 132)',
+//             borderColor: 'rgb(255, 99, 132)',
+//             data: [0, 10, 5, 2, 20, 30, 45],
+//         }]
+//     },
+
+//     // Configuration options go here
+//     options: {}
+// });
