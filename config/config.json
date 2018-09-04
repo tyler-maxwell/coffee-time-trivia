@@ -4,7 +4,7 @@
     "password": "root",
     "database": "trivia",
     "host": "localhost",
-    "port": "8889",
+    "port": "3306",
     "dialect": "mysql"
   },
   "test": {
@@ -12,7 +12,7 @@
     "password": "root",
     "database": "trivia",
     "host": "localhost",
-    "port": "8889",
+    "port": "3306",
     "dialect": "mysql",
     "logging": false
   },

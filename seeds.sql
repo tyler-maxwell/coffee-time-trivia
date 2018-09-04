@@ -1,7 +1,7 @@
 INSERT into Users
-    (username, password, createdAt, updatedAt)
+    (username, password)
 VALUES
-    ("admin", "admin", NOW(), NOW());
+    ("admin", "admin";
 
 use trivia;
 INSERT into Questions
@@ -68,7 +68,7 @@ VALUES
         18,
         38,
         58,
-        18,
+        2,
         1
 );
 
