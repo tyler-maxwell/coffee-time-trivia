@@ -25,9 +25,7 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "request": "^2.88.0",
-    "sequelize": "^4.38.0",
-    "underscore": "^1.9.1"
+    "sequelize": "^4.38.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
