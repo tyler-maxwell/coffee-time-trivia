@@ -48,8 +48,7 @@ module.exports = function(sequelize, DataTypes) {
     Question.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
-      },
-      onDelete: "cascade"
+      }
     });
   };
   return Question;

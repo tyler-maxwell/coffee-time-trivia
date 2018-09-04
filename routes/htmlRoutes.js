@@ -1,3 +1,5 @@
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 var db = require("../models");
 // var _under = require("underscore");
 var request = require('request');
@@ -155,12 +157,52 @@ module.exports = function (app) {
       });
     });
   });
-  app.get("/game", isLoggedIn, function (req, res) {
-    console.log(req.user);
-    db.User.findOne({ where: { id: req.user.id } }).then(function (user) {
-      res.render("game", {
-        isUser: true,
-        user: user
+  app.get("/game", isLoggedIn, function(req, res) {
+    db.User.findOne({ where: { id: req.user.id } }).then(function(user) {
+      user.dataValues.totalAnswered =
+        user.dataValues.correct + user.dataValues.wrong;
+      db.Round.findAll({
+        attributes: ["QuestionId"],
+        where: {
+          UserId: req.user.id
+        }
+      }).then(function(dbRounds) {
+        var answered = [];
+        dbRounds.forEach(element => {
+          answered.push(element.dataValues.QuestionId);
+        });
+        db.Question.findOne({
+          where: {
+            UserId: {
+              [Op.ne]: req.user.id
+            },
+            id: {
+              [Op.notIn]: answered
+            }
+          }
+        }).then(function(dbQuestion) {
+          if (dbQuestion) {
+            db.User.findOne({
+              where: {
+                id: dbQuestion.dataValues.UserId
+              }
+            }).then(function(dbUser) {
+              dbQuestion.dataValues.username = dbUser.dataValues.username;
+              res.render("game", {
+                isUser: true,
+                isQuestion: true,
+                user: user.dataValues,
+                question: dbQuestion.dataValues
+              });
+            });
+          } else {
+            res.render("game", {
+              isUser: true,
+              isQuestion: false,
+              user: user.dataValues
+            });
+          }
+        });
       });
     });
   });

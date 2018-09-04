@@ -76,7 +76,7 @@ module.exports = function(passport, user) {
                 message: "Username does not exist"
               });
             }
-
+            console.log(user.password);
             if (!isValidPassword(user.password, password)) {
               return done(null, false, {
                 message: "Incorrect password."
