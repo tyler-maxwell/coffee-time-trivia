@@ -159,7 +159,7 @@ module.exports = function (app, passport) {
   app.get("/api/user/question/info/:userId", function (req, res) {
     db.Question.findAll({
       where: {
-        userId: req.params.userId
+        UserId: req.params.userId
       }
     }).then(function (data) {
       res.json(data);
@@ -179,4 +179,3 @@ function isLoggedIn(req, res, next) {
     res.redirect("/");
   }
 }
-};

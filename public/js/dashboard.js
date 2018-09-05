@@ -1,13 +1,12 @@
 $(function () {
     var userId = $("#correctIncorrect").data("user");
-    $.get("/api/user/question/info/" + userId, function (data) {
-        console.log(data);
-        var qCount = data.question.length;
+    $.get("/api/user/question/info/" + userId, function (response) {
+        var qCount = response.question.length;
         var appSum = 0;
         var disSum = 0;
-        for (var i = 0; i < data.approved.length; i++) {
-            appSum += data.approved[i];
-            disSum += data.disapproved[i];
+        for (var i = 0; i < response.approved.length; i++) {
+            appSum += response.approved[i];
+            disSum += response.disapproved[i];
         }
     })
 })
