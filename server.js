@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // For Passport
+console.log("AAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHH!", keys.session.secret);
 app.use(
   session({
     secret: keys.session.secret,
@@ -25,6 +26,7 @@ app.use(
     saveUninitialized: true
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 

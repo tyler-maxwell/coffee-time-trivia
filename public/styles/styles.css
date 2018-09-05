@@ -1,3 +1,8 @@
+body {
+  background-color: #825D2F;
+}
+
+
 .list-group-item {
   line-height: 2.5;
 }
@@ -16,6 +21,18 @@
   margin-left: 820px;
   font-size: 12px;
 }
-#btn{
-   /* margin-left: 820px; */
+.drkbtn {
+  background-color: #7c736c
+}
+
+.jumbotron {
+  background-color: #825D2F;
+}
+.img {
+  height: 75px;
+  width: 100px;
+  float: left;
+}
+.display-4 {
+  color: #F0E4D5
 }

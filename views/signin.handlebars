@@ -1,6 +1,7 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Welcome to Trivia!</h1>
+        <img class="img" src="images/coffee.png" class="rounded float-left" alt="...">
+        <h1 class="display-4">Welcome to Coffee Time Trivia!</h1>
         <hr class="my-4"> {{#if isUser}}
         <p>Howdy, {{user.username}}!</p>
         <a class="btn btn-primary btn-lg" href="/game" role="button">Play Trivia</a>
@@ -8,7 +9,7 @@
         <a class="btn btn-primary btn-lg" href="/logout" role="button">Logout</a>
         {{/if}} {{#unless isUser}}
         <p>You are not currently signed in.</p>
-        <button type="button" class="btn btn-primary btn-lg" id="modalBtn">Sign Up / Sign In</button>
+        <button type="button" class="btn btn-primary btn-lg drkbtn" id="modalBtn">Sign Up / Sign In</button>
         {{/unless}}
     </div>
 </div>
