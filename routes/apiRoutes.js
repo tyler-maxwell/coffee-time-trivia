@@ -2,7 +2,6 @@ var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
 var db = require("../models");
 
-
 module.exports = function (app, passport) {
   //====================
   //Authentication Routes
@@ -25,10 +24,24 @@ module.exports = function (app, passport) {
     })
   );
 
+  //====================
+  //Basic Routes
+  //====================
 
-  //====================
-  //User Routes
-  //====================
+  //Create Question
+  app.post("/submitquestion", isLoggedIn, function (req, res) {
+    db.Question.create({
+      question: req.body.q1,
+      answer1: req.body.a1,
+      answer2: req.body.a2,
+      answer3: req.body.a3,
+      answer4: req.body.a4,
+      correctAnswer: req.body.c1,
+      UserId: req.user.id
+    }).catch(err => {
+      console.log(err);
+    });
+  });
 
   //Update user
   app.put("/api/users", function (req, res) {
@@ -154,3 +167,16 @@ module.exports = function (app, passport) {
   })
 };
 
+//====================
+//Helper Functions
+//====================
+
+//Helper function for passport functionality
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect("/");
+  }
+}
+};
