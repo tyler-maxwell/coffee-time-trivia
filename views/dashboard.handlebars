@@ -11,13 +11,67 @@
 </div>
 
 <div class="container">
-  <h1 class="display-4">Dashboard Info</h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacus enim, placerat eu dui in, vestibulum mollis ante. Pellentesque
-    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam mi ante, efficitur convallis
-    magna vitae, faucibus imperdiet nisi. Nam tempor orci vel ante blandit pretium. Donec at diam nisi. Maecenas laoreet
-    nunc sit amet leo rhoncus, ac gravida elit volutpat. Aliquam erat volutpat. Proin fringilla libero vel porttitor placerat.
-    Vivamus nec mauris in arcu convallis pretium. Suspendisse semper volutpat enim id lobortis. Curabitur dapibus dapibus
-    velit, tristique pretium odio lacinia et. Praesent id tortor et ex luctus dictum.
-  </p>
+  <h1 class="display-4">How Smart Are You?</h1>
+  <canvas id="correctIncorrect" data-user="{{user.username}}" data-correct="{{user.correct}}" data-wrong="{{user.wrong}}" width="300"
+    height="300"></canvas>
 </div>
+
+<!--coming up next-->
+
+<div class="container">
+  <h1 class="display-4">How Popular Are Your Questions?</h1>
+  <canvas id="approvedDisapproved" data-approved="{{user.correct}}" data-wrong="{{user.wrong}}" width="300" height="300"></canvas>
+</div>
+
+<!--script-->
+
+<script>
+  var ctx1 = $("#correctIncorrect");
+
+  var correctIncorrect = new Chart(ctx1, {
+    type: 'doughnut',
+    data: {
+      labels: ["Correct", "Incorrect"],
+      datasets: [{
+        data: [$("#correctIncorrect").data("correct"), $("#correctIncorrect").data("wrong")],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: false
+    }
+  });
+
+  var ctx2 = $("#correctIncorrect");
+
+  var correctIncorrect = new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+      labels: ["Approved", "Disapproved"],
+      datasets: [{
+        data: [appSum, disSum], //need to add in variables for approved/disapproved here
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: false
+    }
+  });
+</script>
+<script src="js/dashboard.js"></script>
