@@ -2,7 +2,7 @@ var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
 var db = require("../models");
 
-module.exports = function(app, passport) {
+module.exports = function (app, passport) {
   //====================
   //Authentication Routes
   //====================
@@ -29,7 +29,7 @@ module.exports = function(app, passport) {
   //====================
 
   //Create Question
-  app.post("/submitquestion", isLoggedIn, function(req, res) {
+  app.post("/submitquestion", isLoggedIn, function (req, res) {
     db.Question.create({
       question: req.body.q1,
       answer1: req.body.a1,
@@ -44,12 +44,12 @@ module.exports = function(app, passport) {
   });
 
   //Update user
-  app.put("/api/users", function(req, res) {
+  app.put("/api/users", function (req, res) {
     db.User.update(req.body, {
       where: {
         id: req.body.id
       }
-    }).then(function(dbUser) {
+    }).then(function (dbUser) {
       res.json(dbUser);
     });
   });
@@ -59,17 +59,17 @@ module.exports = function(app, passport) {
   //====================
 
   //Get question by id
-  app.get("/api/questions/:id", function(req, res) {
+  app.get("/api/questions/:id", function (req, res) {
     db.Question.findOne({
       where: {
         id: req.params.id
       }
-    }).then(function(dbQuestion) {
+    }).then(function (dbQuestion) {
       db.User.findOne({
         where: {
           id: dbQuestion.dataValues.UserId
         }
-      }).then(function(dbUser) {
+      }).then(function (dbUser) {
         dbQuestion.dataValues.username = dbUser.dataValues.username;
         res.json(dbQuestion.dataValues);
       });
@@ -77,22 +77,22 @@ module.exports = function(app, passport) {
   });
 
   //Post round result
-  app.post("/api/rounds", function(req, res) {
+  app.post("/api/rounds", function (req, res) {
     db.Round.create({
       UserId: req.body.UserId,
       QuestionId: req.body.QuestionId
-    }).then(function(dbRound) {
+    }).then(function (dbRound) {
       res.json(dbRound);
     });
   });
 
   //Update question
-  app.put("/api/questions", function(req, res) {
+  app.put("/api/questions", function (req, res) {
     db.Question.update(req.body, {
       where: {
         id: req.body.id
       }
-    }).then(function(dbQuestion) {
+    }).then(function (dbQuestion) {
       res.json(dbQuestion);
     });
   });
@@ -102,13 +102,13 @@ module.exports = function(app, passport) {
   //====================
 
   //Get a single question that user has not created or answered
-  app.get("/api/next_question/:userId", function(req, res) {
+  app.get("/api/next_question/:userId", function (req, res) {
     db.Round.findAll({
       attributes: ["QuestionId"],
       where: {
         UserId: req.params.userId
       }
-    }).then(function(dbRounds) {
+    }).then(function (dbRounds) {
       var answered = [];
       dbRounds.forEach(element => {
         answered.push(element.dataValues.QuestionId);
@@ -122,20 +122,20 @@ module.exports = function(app, passport) {
             [Op.notIn]: answered
           }
         }
-      }).then(function(dbQuestion) {
+      }).then(function (dbQuestion) {
         res.json(dbQuestion);
       });
     });
   });
 
   //Get all questions that user has not created or answered
-  app.get("/api/unanswered/:userId", function(req, res) {
+  app.get("/api/unanswered/:userId", function (req, res) {
     db.Round.findAll({
       attributes: ["QuestionId"],
       where: {
         UserId: req.params.userId
       }
-    }).then(function(dbRounds) {
+    }).then(function (dbRounds) {
       var answered = [];
       dbRounds.forEach(element => {
         answered.push(element.dataValues.QuestionId);
@@ -149,11 +149,23 @@ module.exports = function(app, passport) {
             [Op.notIn]: answered
           }
         }
-      }).then(function(dbQuestions) {
+      }).then(function (dbQuestions) {
         res.json(dbQuestions);
       });
     });
   });
+
+  //   //route to get user question information for dashboard page
+  //   app.get("/api/user/question/info/:userId", function (req, res) {
+  //     db.Question.findAll({
+  //       where: {
+  //         UserId: req.params.userId
+  //       }
+  //     }).then(function (data) {
+  //       res.json(data);
+  //     })
+  //   })
+  // };
 
   //====================
   //Helper Functions
@@ -167,4 +179,4 @@ module.exports = function(app, passport) {
       res.redirect("/");
     }
   }
-};
+}
