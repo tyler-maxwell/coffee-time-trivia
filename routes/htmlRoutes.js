@@ -2,13 +2,13 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
   //====================
   //Main Routes
   //====================
 
   //Load front page
-  app.get("/", function(req, res) {
+  app.get("/", function (req, res) {
     console.log(req.user);
     //Check for user session
     if (req.user === undefined) {
@@ -17,7 +17,7 @@ module.exports = function(app) {
         user: {}
       });
     } else {
-      db.User.findOne({ where: { id: req.user.id } }).then(function(user) {
+      db.User.findOne({ where: { id: req.user.id } }).then(function (user) {
         res.render("signin", {
           isUser: true,
           user: user
@@ -27,19 +27,27 @@ module.exports = function(app) {
   });
 
   //Load dashboard
-  app.get("/dashboard", isLoggedIn, function(req, res) {
+  app.get("/dashboard", isLoggedIn, function (req, res) {
     console.log(req.user);
-    db.User.findOne({ where: { id: req.user.id } }).then(function(user) {
-      res.render("dashboard", {
-        isUser: true,
-        user: user
-      });
+    db.User.findOne({ where: { id: req.user.id } }).then(function (user) {
+      db.Question.findAll({
+        where: {
+          UserId: req.user.id
+        }
+      }).then(function (data) {
+        console.log(data);
+        res.render("dashboard", {
+          isUser: true,
+          user: user,
+          questions: data
+        });
+      }) //within callback function of user write previous api-route
     });
   });
 
   //Load game
-  app.get("/game", isLoggedIn, function(req, res) {
-    db.User.findOne({ where: { id: req.user.id } }).then(function(user) {
+  app.get("/game", isLoggedIn, function (req, res) {
+    db.User.findOne({ where: { id: req.user.id } }).then(function (user) {
       user.dataValues.totalAnswered =
         user.dataValues.correct + user.dataValues.wrong;
       db.Round.findAll({
@@ -47,7 +55,7 @@ module.exports = function(app) {
         where: {
           UserId: req.user.id
         }
-      }).then(function(dbRounds) {
+      }).then(function (dbRounds) {
         var answered = [];
         dbRounds.forEach(element => {
           answered.push(element.dataValues.QuestionId);
@@ -61,13 +69,13 @@ module.exports = function(app) {
               [Op.notIn]: answered
             }
           }
-        }).then(function(dbQuestion) {
+        }).then(function (dbQuestion) {
           if (dbQuestion) {
             db.User.findOne({
               where: {
                 id: dbQuestion.dataValues.UserId
               }
-            }).then(function(dbUser) {
+            }).then(function (dbUser) {
               dbQuestion.dataValues.username = dbUser.dataValues.username;
               res.render("game", {
                 isUser: true,
@@ -93,14 +101,14 @@ module.exports = function(app) {
   //====================
 
   //Load sign in page on logout
-  app.get("/logout", function(req, res) {
-    req.session.destroy(function(err) {
+  app.get("/logout", function (req, res) {
+    req.session.destroy(function (err) {
       res.redirect("/");
     });
   });
 
   //Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
+  app.get("*", function (req, res) {
     res.render("404");
   });
 
