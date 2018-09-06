@@ -155,27 +155,28 @@ module.exports = function (app, passport) {
     });
   });
 
-  //route to get user question information for dashboard page
-  app.get("/api/user/question/info/:userId", function (req, res) {
-    db.Question.findAll({
-      where: {
-        UserId: req.params.userId
-      }
-    }).then(function (data) {
-      res.json(data);
-    })
-  })
-};
+  //   //route to get user question information for dashboard page
+  //   app.get("/api/user/question/info/:userId", function (req, res) {
+  //     db.Question.findAll({
+  //       where: {
+  //         UserId: req.params.userId
+  //       }
+  //     }).then(function (data) {
+  //       res.json(data);
+  //     })
+  //   })
+  // };
 
-//====================
-//Helper Functions
-//====================
+  //====================
+  //Helper Functions
+  //====================
 
-//Helper function for passport functionality
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    res.redirect("/");
+  //Helper function for passport functionality
+  function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.redirect("/");
+    }
   }
 }

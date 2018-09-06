@@ -20,11 +20,12 @@
 
 <div class="container">
   <h1 class="display-4">How Popular Are Your Questions?</h1>
-  <canvas id="approvedDisapproved" data-approved="{{user.correct}}" data-wrong="{{user.wrong}}" width="300" height="300"></canvas>
+  <canvas id="approvedDisapproved" data-approved="{{questions.approved}}" data-disapproved="{{questions.disapproved}}" width="300"
+    height="300"></canvas>
 </div>
 
 <!--script-->
-
+<script src="js/dashboard.js"></script>
 <script>
   var ctx1 = $("#correctIncorrect");
 
@@ -50,9 +51,9 @@
     }
   });
 
-  var ctx2 = $("#correctIncorrect");
+  var ctx2 = $("#approvedDisapproved");
 
-  var correctIncorrect = new Chart(ctx2, {
+  var approvedDisapproved = new Chart(ctx2, {
     type: 'doughnut',
     data: {
       labels: ["Approved", "Disapproved"],
@@ -74,7 +75,6 @@
     }
   });
 </script>
-<script src="js/dashboard.js"></script>
 <h3>Form for submitting question</h3>
 <form action="/submitquestion" method="POST">
   <div class="form-group">

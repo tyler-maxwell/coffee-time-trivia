@@ -31,12 +31,17 @@ module.exports = function (app) {
     console.log(req.user);
     db.User.findOne({ where: { id: req.user.id } }).then(function (user) {
       db.Question.findAll({
-        where: id
+        where: {
+          UserId: req.user.id
+        }
+      }).then(function (data) {
+        console.log(data);
+        res.render("dashboard", {
+          isUser: true,
+          user: user,
+          questions: data
+        });
       }) //within callback function of user write previous api-route
-      res.render("dashboard", {
-        isUser: true,
-        user: user
-      });
     });
   });
 
