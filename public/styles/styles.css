@@ -59,6 +59,7 @@ html *
   width: 100px;
   float: left;
 }
-.model {
+#usernameCreate, #passwordCreate, #passwordCheck, #usernameInput, #passwordInput {
   text-shadow: none !important;
+  -webkit-text-stroke: 0px  #4e2710;
 }
