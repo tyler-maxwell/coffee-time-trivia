@@ -140,8 +140,8 @@ $(function() {
   });
 
   //Downvote event
-  event.preventDefault();
-    $(document.body).on("click", "#downvoteBtn", function(event) {
+  $(document.body).on("click", "#downvoteBtn", function(event) {
+    event.preventDefault();
 
     if (victory) {
       var questionUpdate = {
