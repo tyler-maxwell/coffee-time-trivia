@@ -160,7 +160,7 @@ $(function() {
     $.ajax({
       method: "PUT",
       url: "/api/questions",
-      data: questionUpdate,
+      data: questionUpdate
     }).then(function() {
       window.location.assign("/game");
     });
