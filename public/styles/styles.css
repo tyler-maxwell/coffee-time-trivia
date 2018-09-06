@@ -16,6 +16,8 @@ html *
    /* font-size: 1em !important; */
    color: #4e2710 !important;
    font-family: 'Times New Roman', Times, serif !important;
+   text-shadow: 1px -1px #D9CEC1;
+   -webkit-text-stroke: 1px #4e2710;
 }
 
 .form-control {
@@ -57,6 +59,6 @@ html *
   width: 100px;
   float: left;
 }
-/* .display-4 {
-  color: #F0E4D5
-} */
+.model {
+  text-shadow: none !important;
+}
