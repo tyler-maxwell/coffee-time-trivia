@@ -7,6 +7,14 @@ $(function() {
   var disapproved = parseInt($("#question").attr("data-disapproved"));
   var correctGuesses = parseInt($("#question").attr("data-correctGuesses"));
   var incorrectGuesses = parseInt($("#question").attr("data-incorrectGuesses"));
+  var total=correctGuesses+incorrectGuesses;
+  
+
+  var correctGuessespercentagefinal=Math.floor((correctGuesses * 100) / total);
+ 
+  var incorrectGuessespercentagefinal=Math.floor((incorrectGuesses * 100) / total);
+  console.log(incorrectGuessespercentagefinal);
+  console.log(correctGuessespercentagefinal);
 
   //Answer chosen event
   $(".answerBtn").on("click", function(event) {
@@ -132,8 +140,8 @@ $(function() {
   });
 
   //Downvote event
-  $(document.body).on("click", "#downvoteBtn", function(event) {
-    event.preventDefault();
+  event.preventDefault();
+    $(document.body).on("click", "#downvoteBtn", function(event) {
 
     if (victory) {
       var questionUpdate = {
@@ -152,15 +160,40 @@ $(function() {
     $.ajax({
       method: "PUT",
       url: "/api/questions",
-      data: questionUpdate
+      data: questionUpdate,
     }).then(function() {
       window.location.assign("/game");
     });
   });
-
   //Skip voting event
   $(document.body).on("click", "#skipBtn", function(event) {
     event.preventDefault();
     window.location.assign("/game");
   });
-});
+
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ["Correct %","IncorrectGuesses %"],
+        datasets: [{
+            label: '# of Votes',
+            data: [correctGuessespercentagefinal,incorrectGuessespercentagefinal],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 3
+        }]
+    },
+    options: {
+        scales: {
+
+        }
+    }
+  });
+})
