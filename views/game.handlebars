@@ -39,6 +39,10 @@
     </div>
   </div>
   <div class="row text-center">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" id="charts"></div>
+  </div>
+  <div class="row text-center">
     <div class="col-md-12" id="voting"></div>
   </div>
   {{/if}} {{#unless isQuestion}}
@@ -50,8 +54,9 @@
   {{/unless}}
 
 </div>
-<div class="chart-container" style= "height:250px;width:250px;">
-    <canvas id="myChart"></canvas>
+
+<div class="chart-container" style="height:250px;width:250px;">
+  <canvas id="myChart"></canvas>
 </div>
 
 <script src="js/game.js"></script>

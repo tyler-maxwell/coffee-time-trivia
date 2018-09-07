@@ -7,14 +7,13 @@ $(function() {
   var disapproved = parseInt($("#question").attr("data-disapproved"));
   var correctGuesses = parseInt($("#question").attr("data-correctGuesses"));
   var incorrectGuesses = parseInt($("#question").attr("data-incorrectGuesses"));
-  var total=correctGuesses+incorrectGuesses;
-  
-
-  var correctGuessespercentagefinal=Math.floor((correctGuesses * 100) / total);
- 
-  var incorrectGuessespercentagefinal=Math.floor((incorrectGuesses * 100) / total);
-  console.log(incorrectGuessespercentagefinal);
-  console.log(correctGuessespercentagefinal);
+  var total = correctGuesses + incorrectGuesses;
+  var correctGuessespercentagefinal = Math.floor(
+    (correctGuesses * 100) / total
+  );
+  var incorrectGuessespercentagefinal = Math.floor(
+    (incorrectGuesses * 100) / total
+  );
 
   //Answer chosen event
   $(".answerBtn").on("click", function(event) {
@@ -89,6 +88,41 @@ $(function() {
     $("#gamespace").append(outcome);
     $("#gamespace").append(head);
     $("#gamespace").append(ans);
+
+    //Display chart
+    var chart = $("<div>");
+    chart.attr("class", "chart-container");
+    var chartHead = $("<h3>");
+    chartHead.text("Community Score");
+    var canvas = $("<canvas>");
+    canvas.attr("id", "myChart");
+    chart.append(chartHead);
+    chart.append(canvas);
+    $("#charts").append(chart);
+    var ctx = $("#myChart");
+    var myChart = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: ["Correct %", "Incorrect %"],
+        datasets: [
+          {
+            label: "# of Votes",
+            data: [
+              correctGuessespercentagefinal,
+              incorrectGuessespercentagefinal
+            ],
+            backgroundColor: ["rgba(0, 255, 0, 1)", "rgba(255, 0, 0, 1)"],
+            borderColor: ["rgba(0, 255, 0, 1)", "rgba(255, 0, 0, 1)"],
+            borderWidth: 3
+          }
+        ]
+      },
+      options: {
+        legend: {
+          display: false
+        }
+      }
+    });
 
     //Display voting
     var prompt = $("<h3>");
@@ -165,35 +199,10 @@ $(function() {
       window.location.assign("/game");
     });
   });
+
   //Skip voting event
   $(document.body).on("click", "#skipBtn", function(event) {
     event.preventDefault();
     window.location.assign("/game");
   });
-
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ["Correct %","IncorrectGuesses %"],
-        datasets: [{
-            label: '# of Votes',
-            data: [correctGuessespercentagefinal,incorrectGuessespercentagefinal],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-            ],
-            borderWidth: 3
-        }]
-    },
-    options: {
-        scales: {
-
-        }
-    }
-  });
-})
+});

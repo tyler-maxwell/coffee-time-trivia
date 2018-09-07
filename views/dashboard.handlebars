@@ -11,100 +11,59 @@
 </div>
 
 <div class="container">
-  <h1 class="display-4">How Smart Are You?</h1>
-  <canvas id="correctIncorrect" data-user="{{user.username}}" data-correct="{{user.correct}}" data-wrong="{{user.wrong}}" width="300"
-    height="300"></canvas>
-</div>
-
-<!--coming up next-->
-
-<div class="container">
-  <h1 class="display-4">How Popular Are Your Questions?</h1>
-  <canvas id="approvedDisapproved" data-approved="{{questions.approved}}" data-disapproved="{{questions.disapproved}}" width="300"
-    height="300"></canvas>
-</div>
-
-<!--script-->
-<script src="js/dashboard.js"></script>
-<script>
-  var ctx1 = $("#correctIncorrect");
-
-  var correctIncorrect = new Chart(ctx1, {
-    type: 'doughnut',
-    data: {
-      labels: ["Correct", "Incorrect"],
-      datasets: [{
-        data: [$("#correctIncorrect").data("correct"), $("#correctIncorrect").data("wrong")],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(54, 162, 235, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: false
-    }
-  });
-
-  var ctx2 = $("#approvedDisapproved");
-
-  var approvedDisapproved = new Chart(ctx2, {
-    type: 'doughnut',
-    data: {
-      labels: ["Approved", "Disapproved"],
-      datasets: [{
-        data: [appSum, disSum], //need to add in variables for approved/disapproved here
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(54, 162, 235, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: false
-    }
-  });
-</script>
-<h3>Form for submitting question</h3>
-<form action="/submitquestion" method="POST">
-  <div class="form-group">
-    <label for="usernameCreate"> Question</label>
-    <input type="text" class="form-control" id="q1" placeholder="Enter username">
+  <div class="row" id="chartsHead">
+    <div class="col-md-6">
+      <h2>How Smart Are You?</h2>
+    </div>
+    <div class="col-md-6">
+      <h2>How Popular Are Your Questions?</h2>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="usernameCreate">Answer1:</label>
-    <input type="text" class="form-control" id="a1" placeholder="Enter username">
-  </div>
-  <div class="form-group">
-    <label for="usernameCreate">Answer2:</label>
-    <input type="text" class="form-control" id="a2" placeholder="Enter username">
-  </div>
-  <div class="form-group">
-    <label for="usernameCreate">Answer3:</label>
-    <input type="text" class="form-control" id="a3" placeholder="Enter username">
-  </div>
-  <div class="form-group">
-    <label for="usernameCreate">Answer4:</label>
-    <input type="text" class="form-control" id="a4" placeholder="Enter username">
-  </div>
-  <div class="form-group">
-    <label for="usernameCreate">Correct Answer no</label>
-    <input type="number" class="form-control" id="c1" placeholder="Enter Correct Answer no from the option">
-  </div>
-  <br>
 
-  <button id="btn" type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">submit</button>
-</form>
+  <div class="row" id="charts">
+    <div class="col-md-6">
+      <canvas id="correctIncorrect" data-user="{{user.username}}" data-correct="{{user.correct}}" data-wrong="{{user.wrong}}"
+        width="300" height="300"></canvas>
+    </div>
+    <div class="col-md-6">
+      <canvas id="approvedDisapproved" data-approved="{{questions.approved}}" data-disapproved="{{questions.disapproved}}"
+        width="300" height="300"></canvas>
+    </div>
+  </div>
+
+  <div class="row" id="qFormArea">
+    <div class="col-md-12">
+      <h2>Create a Trivia Question</h2>
+      <form action="/submitquestion" method="POST">
+        <div class="form-group">
+          <label for="usernameCreate"> Question</label>
+          <input type="text" class="form-control" id="q1" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+          <label for="usernameCreate">Answer1:</label>
+          <input type="text" class="form-control" id="a1" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+          <label for="usernameCreate">Answer2:</label>
+          <input type="text" class="form-control" id="a2" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+          <label for="usernameCreate">Answer3:</label>
+          <input type="text" class="form-control" id="a3" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+          <label for="usernameCreate">Answer4:</label>
+          <input type="text" class="form-control" id="a4" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+          <label for="usernameCreate">Correct Answer no</label>
+          <input type="number" class="form-control" id="c1" placeholder="Enter Correct Answer no from the option">
+        </div>
+        <br>
+        <button id="btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">submit</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 <!-- Modal -->
@@ -119,16 +78,15 @@
       </div>
       <div class="modal-body">
         <input type="hidden" name="text" id="textBody1" value="" />
-
       </div>
       <div class="modal-footer">
         {{!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}} {{!-- <a class="btn btn-primary btn-secondary"
           href="/dashboard" data-dismiss="modal" role="button">Close</a> --}}
         <a class=" btn btn-primary btn-lg" href="/dashboard" role="button">Close</a>
-
       </div>
     </div>
   </div>
 </div>
 
+<script src="js/dashboard.js"></script>
 <script src="js/submission.js"></script>
