@@ -1,5 +1,7 @@
 //Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
+  $("#collapseOne").collapse("hide");
+
   //Display the signup/signin modal
   $("#modalBtn").on("click", function(event) {
     event.preventDefault();
