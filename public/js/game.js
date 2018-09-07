@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
   //Global variables
   var victory;
   var userId = $("#username").attr("data-id");
@@ -16,7 +16,7 @@ $(function() {
   );
 
   //Answer chosen event
-  $(".answerBtn").on("click", function(event) {
+  $(".answerBtn").on("click", function (event) {
     event.preventDefault();
 
     var value = $(this).attr("data-value");
@@ -26,8 +26,8 @@ $(function() {
       QuestionId: questionId
     };
 
-    $.post("/api/rounds", newRound, function(response) {
-      $.get("/api/questions/" + questionId, function(result) {
+    $.post("/api/rounds", newRound, function (response) {
+      $.get("/api/questions/" + questionId, function (result) {
         var userUpdate = {
           id: $("#username").attr("data-id")
         };
@@ -42,7 +42,7 @@ $(function() {
           method: "PUT",
           url: "/api/users",
           data: userUpdate
-        }).then(function() {
+        }).then(function () {
           showAnswer(victory, answer, result);
         });
       });
@@ -50,7 +50,7 @@ $(function() {
   });
 
   //Display information after question is answered
-  showAnswer = function(victory, answer, result) {
+  showAnswer = function (victory, answer, result) {
     //Empty div
     $("#gamespace").empty();
 
@@ -111,9 +111,9 @@ $(function() {
               correctGuessespercentagefinal,
               incorrectGuessespercentagefinal
             ],
-            backgroundColor: ["rgba(0, 255, 0, 1)", "rgba(255, 0, 0, 1)"],
-            borderColor: ["rgba(0, 255, 0, 1)", "rgba(255, 0, 0, 1)"],
-            borderWidth: 3
+            backgroundColor: ["rgba(60, 91, 42, .75)", "rgba(137,44,61, .75)"],
+            borderColor: ["rgba(60, 91, 42, .75)", "rgba(137,44,61, .75)"],
+            borderWidth: 1
           }
         ]
       },
@@ -147,7 +147,7 @@ $(function() {
   };
 
   //Upvote event
-  $(document.body).on("click", "#upvoteBtn", function(event) {
+  $(document.body).on("click", "#upvoteBtn", function (event) {
     event.preventDefault();
 
     if (victory) {
@@ -168,13 +168,13 @@ $(function() {
       method: "PUT",
       url: "/api/questions",
       data: questionUpdate
-    }).then(function() {
+    }).then(function () {
       window.location.assign("/game");
     });
   });
 
   //Downvote event
-  $(document.body).on("click", "#downvoteBtn", function(event) {
+  $(document.body).on("click", "#downvoteBtn", function (event) {
     event.preventDefault();
 
     if (victory) {
@@ -195,13 +195,13 @@ $(function() {
       method: "PUT",
       url: "/api/questions",
       data: questionUpdate
-    }).then(function() {
+    }).then(function () {
       window.location.assign("/game");
     });
   });
 
   //Skip voting event
-  $(document.body).on("click", "#skipBtn", function(event) {
+  $(document.body).on("click", "#skipBtn", function (event) {
     event.preventDefault();
     window.location.assign("/game");
   });
