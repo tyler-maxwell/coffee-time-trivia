@@ -45,10 +45,11 @@ html *
 .btn {
   background-color: #7c736c;
   border-color: #7c736c;
+  margin: 2px;
 }
 .btn-primary:hover {
-  background-color: #7c736c !important;
-  border-color: #7c736c !important;
+  background-color: #57504c !important;
+  border-color: #57504c !important;
 }
 .jumbotron {
   background-color: transparent; 
