@@ -14,12 +14,14 @@ $("#btn").on("click", function() {
   var a4 = $("#a4")
     .val()
     .trim();
-  var c1 = $("#c1")
-    .val()
-    .trim();
+  var c1 = parseInt(
+    $("#c1")
+      .val()
+      .trim()
+  );
 
   if (q1 == "" || a1 == "" || a2 == "" || a3 == "" || a4 == "" || c1 == "") {
-    var text = "Not successfully!!!";
+    var text = "Not successful!!!";
     var p = $("<p>");
     p.text(text);
     $(".modal-body").append(p);
