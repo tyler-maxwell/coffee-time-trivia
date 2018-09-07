@@ -79,3 +79,8 @@ html *
 .card-header > h5 > button {
   background-color: rgb(217,206,193) !important;
 }
+
+.tech {
+width: 150px;
+height: 40px;
+}
