@@ -71,3 +71,9 @@ html *
   text-shadow: none !important;
   -webkit-text-stroke: 0px  #4e2710 !important;
 }
+
+.accordion {
+  background-color: transparent; 
+  background-image: none;
+  opacity: 1;
+}
