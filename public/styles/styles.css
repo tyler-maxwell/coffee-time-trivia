@@ -72,8 +72,10 @@ html *
   -webkit-text-stroke: 0px  #4e2710 !important;
 }
 
-.accordion {
-  background-color: transparent; 
-  background-image: none;
-  opacity: 1;
+#accordionExample * {
+  background-color: rgba(217,206,193,.2) !important;
+}
+
+.card-header > h5 > button {
+  background-color: rgb(217,206,193) !important;
 }
