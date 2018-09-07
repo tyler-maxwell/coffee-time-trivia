@@ -16,20 +16,148 @@
 <div class="container">
     <h1 class="display-4">About this App</h1>
     <p>
-        Welcome to Coffee Time Trivia. A trivia game where you can add your own questions about anything and everything. You can
-        start answering trivia questions right away. Just login grab a cup of your favorite Joe and start answering. Once
-        you have started the questions will come at you randomly, so you do not have to worry about them coming in the same
-        order every time you play. The system will remember your answers and try to match you with new and challenging questions
+        Welcome to Coffee Time Trivia. A trivia game where you can add your own questions about anything and
+        everything. You can
+        start answering trivia questions right away. Just login grab a cup of your favorite Joe and start answering.
+        Once
+        you have started the questions will come at you randomly, so you do not have to worry about them coming in the
+        same
+        order every time you play. The system will remember your answers and try to match you with new and challenging
+        questions
         every time.</p>
     <p>
-        If you decide that you want to contribute to our community, you can always add your own questions to the catalog for other
-        Coffee Time Trivia players. Just simply submit your question(s) and answer(s) to the site, they will automatically
-        be approved and added to the queue of questions. All players then get the opportunity to vote on your submitted questions.
-        You will not be asked to answer your own question nor can you vote on your submitted question(s). You will be asked
-        and allowed to vote on questions that others have posted. As long as people up-vote your question it stays in the
-        game for all users to enjoy. As soon as your question gets enough downvotes to override any up-votes, it is removed
+        If you decide that you want to contribute to our community, you can always add your own questions to the
+        catalog for other
+        Coffee Time Trivia players. Just simply submit your question(s) and answer(s) to the site, they will
+        automatically
+        be approved and added to the queue of questions. All players then get the opportunity to vote on your submitted
+        questions.
+        You will not be asked to answer your own question nor can you vote on your submitted question(s). You will be
+        asked
+        and allowed to vote on questions that others have posted. As long as people up-vote your question it stays in
+        the
+        game for all users to enjoy. As soon as your question gets enough downvotes to override any up-votes, it is
+        removed
         from the trivia question list. Have fun and enjoy your Coffee trivia break!
     </p>
+
+    <h1 class="display-4">Site Technical Details: Presentation</h1>
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                        <h4>Stage One:</h4>
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <h5>Introduction:</h5>
+                    <p>What is The Coffee Trivia Game? This is a trivia game where you can add your own questions and
+                        have an interactive part in the building of the database. </p>
+                    <p>You will be able to create your own account and login. You can start answering trivia questions
+                        right away. Once you have created a log in with your Username and Password you can start
+                        answering your randomly selected questions.</p>
+                    <p>The system will remember your answers and vary the questions that you are asked every time to
+                        keep the experience new and exciting.</p>
+                    <p>We wanted to provide the end users an interaction that would produce Buy-In to the app. We did
+                        this by allowing the User to submit their own questions. The User Submission area will allow
+                        the user to provide a question and 4 multiple choice answers (indicating which answer is
+                        correct). The new question will be added to the Catalog for users to play.</p>
+                    <p>From here these questions will be presented to the other users on the site and they can vote on
+                        the Questions.</p>
+                    <p>Some regulatory actions were built into the App for safe guard of the Question selection
+                        process.</p>
+                    <ol>
+                        <li>You will not be asked to answer or vote on your own question.</li>
+                        <li>Questions are presented one at a time, after the user answers the question they are given
+                            the voting options.</li>
+                    </ol>
+                    <h5>Voting process:</h5>
+                    <ol>
+                        <li>As long as people up-vote your question it stays in the game for all users to enjoy.</li>
+                        <li>When your question reaches a 50% down-voting it will be removed from the active question
+                            queue and placed in a pending status for the creator to review and correct.</li>
+                        <li>How the voting is calculated. As soon as your question gets 50 total votes the system will
+                            begin calculating the percentage of down-votes, if the question has received 50% or more
+                            down-votes it is moved to the pending status parking lot.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                        <h4>Stage Two:</h4>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <h5>Existing Technologies used:</h5>
+                    <ul>
+                        <li>Sequelize</li>
+                        <li>Express</li>
+                        <li>Node</li>
+                        <li>Handlebars</li>
+                        <li>Heroku</li>
+                    </ul>
+                    <h5>Database Structure:</h5>
+                    <p>Questions table: This table stores the questions, answers and the approved status. It also
+                        contains the Votes, guess values and a foreign key of the user who created the question.</p>
+                    <p>Primary Key: Allows us to know who created the question so we do not show this question to them
+                        in game play.</p>
+                    <p>User table: stores the username, pw, correct/incorrect guess count.</p>
+                    <p>Rounds table: This is a reference table that stores both foreign keys, userID and questionID,
+                        allowing the App to cross-reference the question to the user. This is so that way the App does
+                        not repeat a question to the same user.</p>
+                    <h5>New Technologies Used:</h5>
+                    <ul>
+                        <li>Bcrypt-nodejs: For password encryption</li>
+                        <li>Passport: User authentication</li>
+                        <li>Chartjs: Data charts</li>
+                    </ul>
+                    <h5>Future Enhancements</h5>
+                    <ul>
+                        <li>Categories for the Question submissions</li>
+                        <li>Friend Vs. Friend</li>
+                        <li>Rankings and Tournaments</li>
+                        <li>Pending Questions</li>
+                        <li>Personal Question Library</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="false" aria-controls="collapseThree">
+                        <h4>Stage Three:</h4>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <h5>Demo:</h5>
+                    <ul>
+                        <li>Registration of a New User</li>
+                        <li>Show the Error of trying to re-register an existing user</li>
+                        <li>Successful Login of an Existing user</li>
+                        <li>Test of the Question Trivia</li>
+                        <li>Voting Process</li>
+                        <li>Submit a new Question and Answers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
 </div>
 
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="results-modal" aria-hidden="true">
