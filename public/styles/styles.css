@@ -47,7 +47,7 @@ html *
   border-color: #7c736c;
   margin: 2px;
 }
-.btn-primary:hover {
+.btn-primary:hover, #btn:hover {
   background-color: #57504c !important;
   border-color: #57504c !important;
 }
